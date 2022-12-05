@@ -13,7 +13,7 @@ deactivate
 pip3 install django or pip install django
 
 # Creating a project in Django (remember to look for the 11_env in parentheses)
-django-admin startproject learning log .
+django-admin startproject learning_log .
 
 # This command tells Django to set up a new project called learning_log 
 # The dot at the end of the command creates the new project with a directory structure that will make it easy to deploy the app to a server when finished
@@ -72,4 +72,24 @@ class Topic(models.Model):
 
 
 # Activating Models
+# To use our models, we have to tell Django to inclue our app in the overall project. Open settings.py you'll see a section that tells
+# Django which apps are installed and work together
+# We add our app to this list by modifying INSTALLED_APPS
 
+INSTALLED_APPS = [
+    # My app
+    "learning_logs",
+    
+    # Default django apps.
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+]
+
+# Next we need to tell Django to modify the database so it can store information related to the model Topic
+python manage.py makemigrations learning_logs
+
+# The command
