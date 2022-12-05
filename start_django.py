@@ -92,4 +92,22 @@ INSTALLED_APPS = [
 # Next we need to tell Django to modify the database so it can store information related to the model Topic
 python manage.py makemigrations learning_logs
 
-# The command
+# The command makemigrations tell Django to figure out how to modify the database so it can store the data associated with any new models we've defined
+# This migration will create a table for the model Topic in the database.
+
+# Now we will apply this migration and have Django modigy the database for us.
+python manage.py migrate
+
+
+# Anytime we want to modify the data the Learning Log manages follow these steps
+# Modify models.py,
+# Call makemigrations on learning_logs
+# Tell Django to migrate the project
+
+
+# The Django Admin Site
+
+# Crearing a superuser
+# Django allows you to create a superuser, a user who has all privileges available on the site.
+python manage.py createsuperuser
+
