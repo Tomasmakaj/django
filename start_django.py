@@ -111,3 +111,43 @@ python manage.py migrate
 # Django allows you to create a superuser, a user who has all privileges available on the site.
 python manage.py createsuperuser
 
+# Registering a Model with the Admin Site
+
+from django.contrib import admin
+
+# Register your models here.
+
+from .models import Topic
+
+admin.site.register(Topic)
+
+
+# Defining the entry Model
+class Entry(models.Model):
+    """Something specific learned about a topic."""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name_plural = 'entries'
+        
+    def __str__(self):
+        """Return a string representation of the model."""
+        return f"{self.text[:50]}..."
+    
+# Migrating the Entry Model
+
+python manage.py makemigrations learning_logs
+python manage.py migrate
+
+
+# Registering Entry with the Admin Site
+from django.contrib import admin
+
+# Register your models here.
+
+from .models import Topic, Entry
+
+admin.site.register(Topic)
+admin.site.register(Entry)
